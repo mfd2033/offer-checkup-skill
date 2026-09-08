@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} · offer体检报告</title>
+<style>
+:root{
+  --bg:#f7f8fa; --card:#ffffff; --ink:#1f2329; --sub:#6b7280; --line:#e5e7eb;
+  --red:#e5484d; --green:#2ba471; --amber:#f0a020; --blue:#3370ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;padding:32px 16px}
+.wrap{max-width:880px;margin:0 auto}
+header{background:linear-gradient(135deg,#3370ff,#5b8def);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:20px}
+header h1{font-size:24px;margin-bottom:6px}
+header .meta{opacity:.92;font-size:14px;word-break:break-all}
+header a{color:#fff;text-decoration:underline}
+.stars{font-size:34px;letter-spacing:4px;margin-top:10px}
+.score-pill{display:inline-block;background:rgba(255,255,255,.22);border-radius:999px;padding:4px 14px;font-size:14px;margin-top:8px}
+.verdict{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:20px;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{font-size:15px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--sub)}
+section.block{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+section.block h2{font-size:17px;margin-bottom:10px;border-left:4px solid var(--blue);padding-left:10px}
+section.block p{font-size:14px;color:#374151;margin-top:8px}
+.badge{font-size:12px;padding:2px 9px;border-radius:999px;font-weight:600;vertical-align:middle}
+.b-high{background:#fdeced;color:var(--red)}
+.b-mid{background:#fff4e0;color:var(--amber)}
+.b-low{background:#e8f7ef;color:var(--green)}
+.b-na{background:#eef0f3;color:var(--sub)}
+footer{text-align:center;color:var(--sub);font-size:12px;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>{{TITLE}}</h1>
+  <div class="meta">来源：<a href="{{SOURCE_URL}}">{{SOURCE_URL}}</a> ｜ 分析日期：{{DATE}}</div>
+  <div class="stars">{{STARS}}</div>
+  <div class="score-pill">推荐指数 {{SCORE}} / 5</div>
+</header>
+
+<div class="verdict"><strong>一句话结论：</strong>{{VERDICT}}</div>
+
+<div class="grid">
+  <div class="card"><h3>职位 / 薪资</h3><p>{{SALARY}}</p></div>
+  <div class="card"><h3>工作地点</h3><p>{{LOCATION}}</p></div>
+  <div class="card"><h3>公司简介自称</h3><p>{{COMPANY_PROFILE}}</p></div>
+  <div class="card"><h3>工商登记实况</h3><p>{{COMPANY_REG}}</p></div>
+</div>
+
+<section class="block">
+  <h2>一、待遇分析</h2>
+  <span class="badge {{T1_BADGE}}">{{T1_LEVEL}}</span>
+  <p>{{T1_TEXT}}</p>
+</section>
+
+<section class="block">
+  <h2>二、参保人数</h2>
+  <span class="badge {{T2_BADGE}}">{{T2_LEVEL}}</span>
+  <p>{{T2_TEXT}}</p>
+</section>
+
+<section class="block">
+  <h2>三、劳动仲裁 / 投诉</h2>
+  <span class="badge {{T3_BADGE}}">{{T3_LEVEL}}</span>
+  <p>{{T3_TEXT}}</p>
+</section>
+
+<section class="block">
+  <h2>四、招聘套路</h2>
+  <span class="badge {{T4_BADGE}}">{{T4_LEVEL}}</span>
+  <p>{{T4_TEXT}}</p>
+</section>
+
+<section class="block">
+  <h2>五、网络口碑</h2>
+  <span class="badge {{T5_BADGE}}">{{T5_LEVEL}}</span>
+  <p>{{T5_TEXT}}</p>
+</section>
+
+<section class="block">
+  <h2>六、抖音口碑</h2>
+  <span class="badge {{T6_BADGE}}">{{T6_LEVEL}}</span>
+  <p>{{T6_TEXT}}</p>
+</section>
+
+<section class="block">
+  <h2>七、高德口碑</h2>
+  <span class="badge {{T7_BADGE}}">{{T7_LEVEL}}</span>
+  <p>{{T7_TEXT}}</p>
+</section>
+
+<section class="block">
+  <h2>八、推荐指数与风险提示</h2>
+  <p>{{FINAL_NOTE}}</p>
+</section>
+
+<footer>本报告由 WorkBuddy · offer体检 技能生成。数据来源于公开网络检索，仅供参考，不构成入职决策唯一依据。</footer>
+</div>
+</body>
+</html>
