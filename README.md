@@ -14,22 +14,21 @@
 
 ## 安装
 
-### 方式一：克隆到全局技能目录（推荐，跨项目可用）
+将仓库克隆到 AI agent 的技能目录即可。不同 agent 的技能目录位置不同，请参考对应 agent 的文档。
+
+以 WorkBuddy 为例：
 
 ```bash
-# WorkBuddy 全局技能目录（D 盘示例，按你的实际路径调整）
+# WorkBuddy 全局技能目录
 git clone https://github.com/<你的用户名>/offer-checkup-skill.git \
   "D:/WorkBuddy_global/skills/offer-checkup-skill"
-```
 
-### 方式二：克隆到用户级技能目录
-
-```bash
+# 或 WorkBuddy 用户级技能目录
 git clone https://github.com/<你的用户名>/offer-checkup-skill.git \
   "$HOME/.workbuddy/skills/offer-checkup-skill"
 ```
 
-> 安装后重启 / 刷新 WorkBuddy 即可在对话中通过触发词调用。
+> 安装后重启 / 刷新 AI agent 即可在对话中通过触发词调用。
 
 ## 前置依赖
 
@@ -38,7 +37,7 @@ git clone https://github.com/<你的用户名>/offer-checkup-skill.git \
 
 ## 使用
 
-直接对 WorkBuddy 说：
+直接对 AI agent 说触发词：
 
 - 「帮我分析这个工作待遇怎么样？」+ 粘贴招聘链接
 - 「招聘避坑」「这家 offer 靠谱吗」「公司体检」「offer体检」
