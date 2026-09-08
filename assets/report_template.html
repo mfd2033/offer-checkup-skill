@@ -17,6 +17,9 @@ header h1{font-size:24px;margin-bottom:6px}
 header .meta{opacity:.92;font-size:14px;word-break:break-all}
 header a{color:#fff;text-decoration:underline}
 .stars{font-size:34px;letter-spacing:4px;margin-top:10px}
+.stars span{display:inline-block;color:#fff}
+.stars .empty{color:rgba(255,255,255,.3)}
+.stars .half{background:linear-gradient(90deg,#fff 0 42%,rgba(255,255,255,.3) 42% 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .score-pill{display:inline-block;background:rgba(255,255,255,.22);border-radius:999px;padding:4px 14px;font-size:14px;margin-top:8px}
 .verdict{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:20px;font-size:15px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
@@ -40,7 +43,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:24px}
 <header>
   <h1>{{TITLE}}</h1>
   <div class="meta">来源：<a href="{{SOURCE_URL}}">{{SOURCE_URL}}</a> ｜ 分析日期：{{DATE}}</div>
-  <div class="stars">{{STARS}}</div>
+  <div class="stars" data-score="{{SCORE}}"></div>
   <div class="score-pill">推荐指数 {{SCORE}} / 5</div>
 </header>
 
@@ -102,5 +105,22 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:24px}
 
 <footer>本报告由 WorkBuddy · offer体检 技能生成。数据来源于公开网络检索，仅供参考，不构成入职决策唯一依据。</footer>
 </div>
+<script>
+// 依据 data-score 渲染星星：整星实心、半星左实右淡、空星淡显
+(function(){
+  var el=document.querySelector('.stars');
+  if(!el) return;
+  var s=parseFloat(el.getAttribute('data-score')||'0');
+  var full=Math.floor(s);
+  var half=(s-full)>=0.25;
+  var html='';
+  for(var i=0;i<5;i++){
+    if(i<full) html+='<span>★</span>';
+    else if(i===full&&half) html+='<span class="half">★</span>';
+    else html+='<span class="empty">★</span>';
+  }
+  el.innerHTML=html;
+})();
+</script>
 </body>
 </html>
