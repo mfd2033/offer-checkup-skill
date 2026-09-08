@@ -67,7 +67,7 @@ offer-checkup-skill/
 ├── assets/
 │   └── report_template.html    # HTML 报告模板（占位符由技能填充）
 ├── examples/
-│   └── 匠策科技.md             # 实测样例
+│   └── 京东集团-体检销售团队负责人.md  # 实测样例：4.5 星（大厂正面对照）
 ├── LICENSE                     # MIT
 └── README.md
 ```
