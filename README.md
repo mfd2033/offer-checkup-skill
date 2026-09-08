@@ -6,7 +6,7 @@
 
 ## 功能
 
-- **多站点自动爬取**：支持 BOSS / 智联 / 猎聘 / 前程无忧 / 拉勾 等招聘链接，自动调用 `browser-skill` 绕过登录墙抓取职位与公司信息。
+- **多站点自动爬取**：支持 BOSS / 智联 / 猎聘 / 前程无忧 / 拉勾 等招聘链接，自动调用 [browser-skill](https://github.com/Tencent/BrowserSkill) 绕过登录墙抓取职位与公司信息。
 - **7 维度交叉核验**：待遇 / 参保人数 / 劳动仲裁 / 招聘套路 / 网络口碑 / 抖音口碑 / 高德口碑。
 - **主体一致性校验**：自动比对「简介自称主体」与「工商登记主体」，揪出壳公司 / 规模虚报。
 - **风险加权星级**：按 `references/scoring.md` 算法输出 1–5 星，并给红线建议。
@@ -14,25 +14,15 @@
 
 ## 安装
 
-将仓库克隆到 AI agent 的技能目录即可。不同 agent 的技能目录位置不同，请参考对应 agent 的文档。
+将仓库地址发给 AI agent 即可自动安装：
 
-以 WorkBuddy 为例：
-
-```bash
-# WorkBuddy 全局技能目录
-git clone https://github.com/<你的用户名>/offer-checkup-skill.git \
-  "D:/WorkBuddy_global/skills/offer-checkup-skill"
-
-# 或 WorkBuddy 用户级技能目录
-git clone https://github.com/<你的用户名>/offer-checkup-skill.git \
-  "$HOME/.workbuddy/skills/offer-checkup-skill"
 ```
-
-> 安装后重启 / 刷新 AI agent 即可在对话中通过触发词调用。
+安装这个skill：https://github.com/mfd2033/offer-checkup-skill
+```
 
 ## 前置依赖
 
-- **browser-skill**：用于绕过招聘站登录墙自动爬取。未安装或无登录态时，技能会回退为 `WebFetch` 抓取 + 提示你粘贴页面文本，仍可工作。
+- **[browser-skill](https://github.com/Tencent/BrowserSkill)**（腾讯开源浏览器自动化工具）：用于绕过招聘站登录墙自动爬取。未安装或无登录态时，技能会回退为 `WebFetch` 抓取 + 提示你粘贴页面文本，仍可工作。
 - 联网检索能力（WebSearch / WebFetch）。
 
 ## 使用
