@@ -125,6 +125,11 @@ def main():
         tot_save += save
         print(f"{co:<14}{full:>8}ms{pole(m,ALL):>10}{std:>10}ms{save:>8}ms")
     n = len(MEAS)
+    # ---- 防回归断言：守住 ADR-0002「默认全维、--lite 仅砍抖音+高德」决策 ----
+    assert {"网络", "抖音", "高德"}.issubset(ALL), "默认全维必须含软维(网络/抖音/高德)，不得静默砍除"
+    assert set(LITE) == set(ALL) - {"抖音", "高德"}, "LITE 必须为 ALL 去掉抖音+高德"
+    for co, m in MEAS.items():
+        assert m[pole(m, ALL)] >= m[pole(m, LITE)], "默认全维墙钟不应低于标准版(模型结构错误)"
     avg_full = sum(m[pole(m, ALL)] for m in MEAS.values()) // n
     print(f"\n均值墙钟≈{avg_full}ms；标准版累计省时≈{tot_save}ms，均值≈{tot_save//n}ms/次")
     print("\n结论（修正此前'软维零收益'的武断判断）：")
