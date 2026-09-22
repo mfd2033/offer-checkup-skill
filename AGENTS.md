@@ -39,18 +39,7 @@ robocopy "<REPO>\references" "<SKILLS_DIR>\references" /E /R:1 /W:1
 ## 生效
 同步完成后,重载 / 重启会话,`offer体检` 技能即加载新版本。
 
-## 迁移自全局记忆 (Agent Memory, 2026-09-22)
-
-> 以下自 CodeBuddy 全局记忆（update_memory 知识库）迁移而来，原 ID 标注供追溯，迁移后原全局记忆已删除。
-
-### [34031757] 本机维护信息（不进 git）
-offer-checkup-skill(offer体检 技能)本机维护信息(不进 git,仅本机):
-1. 安装路径: `C:\Users\<USER>\.skills-manager\skills\offer体检`（用户级 skills 目录；use_skill 的 offer体检 即加载此目录的 SKILL.md）。
-2. 更新方式: 从源码仓库 `<REPO>` 同步「交付集」（SKILL.md / README.md / LICENSE / assets/ / examples/ / references/ 中运行时引用文件如 scoring.md）到安装目录；排除 .git、.gitignore、.workbuddy/、*.zip、docs/、tests/、reports/、.scratch/、todo-list/、references/adr/、references/glossary.md。用 robocopy /E 镜像目录（只增不删），勿用 /MIR（会误删目标）。
-3. 本机环境陷阱（执行删除/同步命令时）：①批量删除被 safe-delete shim 拦截——Remove-Item -Recurse 前清 `$env:NODE_OPTIONS=''` 及 CODEBUDDY_SAFE_DELETE_BULK_ENABLED/MAX/PREFIX（只设 ENABLED=0 不够，三个变量都要清）；②execute_command 内联 $ 变量会被吞，含 $env: 的复杂逻辑写 .ps1 文件用 powershell -File 执行；③delete_file 工具不能删工作区外文件（安装目录在 C:\Users...），用 Remove-Item -LiteralPath；④list_dir 默认不显示 . 开头文件/目录，审计安装目录用 Get-ChildItem -Recurse。
-
-### [39139342] 时延优化目标
-offer-checkup-skill 优化目标=纯降单次体检墙钟时延（非正确性/覆盖度）。经京东/超聚变/德之润/郑州琛署 4 条真实链接实测，原 ADR-0001（工商门串行门+两波式+硬红线早停）比"7维一次性并行"旧基线慢 ~1.5–2s，因强加一个串行一跳。已采纳重写版设计：抓取页直接解析工商字段（BOSS/猎聘页均自带主体/类型/规模/成立/注册资本/经营状态，无需独立串行工商门）、删串行工商门、剩余维度单批并行、硬红线早停仅在报告中裁剪章节（不再影响墙钟，纯为正确性与省 token）。实测投影：超聚变研究 4.3→1.6s、德之润 2.4→2.0s、琛署 1.7→1.5s、京东(抖音5.6s瓶颈)持平。无缓存维持（保新鲜度）。
-
-### [76019726] 对比测试 fixtures
-offer-checkup-skill 对比测试用真实职位页原始 HTML 存于 `tests/fixtures/job-pages/`（清单见该目录 README.md）：京东 BOSS 223862b6340a8b4a0nJ-0ty7FFtW、超聚变 BOSS 4efc99c1746692360nN82dm_E1ZT、德之润/河南德之润投资 猎聘 1940210899。郑州琛署（微型壳样例）按要求排除，不纳入。抓取方式：BOSS 用 browser-skill get-html（需登录态），猎聘/智联可用 WebFetch。
+## 本机维护信息（本地，未跟踪）
+本机专属内容——安装路径、环境陷阱（safe-delete shim 拦截、`$env:` 内联吞字符等）、ADR 时延优化设计、对比测试 fixtures 清单——已迁出到本地未跟踪文件 `.scratch/local-maintenance.md`（被 `.gitignore` 排除，不进版本库）。
+- 本机 agent 需要查阅上述本机专属信息时，请读取该文件。
+- 该文件不含于技能交付集，也不会出现在 skills 安装目录；缺失即表示当前环境无需这些本机信息。
