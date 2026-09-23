@@ -35,6 +35,11 @@ section.block p{font-size:14px;color:#374151;margin-top:8px}
 .b-mid{background:#fff4e0;color:var(--amber)}
 .b-low{background:#e8f7ef;color:var(--green)}
 .b-na{background:#eef0f3;color:var(--sub)}
+.sources{font-size:13px;color:var(--sub);margin-top:12px;padding-top:8px;border-top:1px dashed var(--line)}
+.sources a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(51,112,255,.3)}
+.sources a:hover{border-bottom-color:var(--blue)}
+.sources .nolink{color:var(--sub);opacity:.72}
+.sources:empty{display:none}
 footer{text-align:center;color:var(--sub);font-size:12px;margin-top:24px}
 </style>
 </head>
@@ -42,7 +47,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:24px}
 <div class="wrap">
 <header>
   <h1>{{TITLE}}</h1>
-  <div class="meta">来源：<a href="{{SOURCE_URL}}">{{SOURCE_URL}}</a> ｜ 分析日期：{{DATE}}</div>
+  <div class="meta">主来源：<a href="{{SOURCE_URL}}">{{SOURCE_LABEL}}</a> ｜ 分析日期：{{DATE}}</div>
   <div class="stars" data-score="{{SCORE}}"></div>
   <div class="score-pill">推荐指数 {{SCORE}} / 5</div>
 </header>
@@ -60,42 +65,49 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:24px}
   <h2>一、待遇分析</h2>
   <span class="badge {{T1_BADGE}}">{{T1_LEVEL}}</span>
   <p>{{T1_TEXT}}</p>
+  <p class="sources">{{T1_SOURCES}}</p>
 </section>
 
 <section class="block">
   <h2>二、参保人数</h2>
   <span class="badge {{T2_BADGE}}">{{T2_LEVEL}}</span>
   <p>{{T2_TEXT}}</p>
+  <p class="sources">{{T2_SOURCES}}</p>
 </section>
 
 <section class="block">
   <h2>三、劳动仲裁 / 投诉</h2>
   <span class="badge {{T3_BADGE}}">{{T3_LEVEL}}</span>
   <p>{{T3_TEXT}}</p>
+  <p class="sources">{{T3_SOURCES}}</p>
 </section>
 
 <section class="block">
   <h2>四、招聘套路</h2>
   <span class="badge {{T4_BADGE}}">{{T4_LEVEL}}</span>
   <p>{{T4_TEXT}}</p>
+  <p class="sources">{{T4_SOURCES}}</p>
 </section>
 
 <section class="block">
   <h2>五、网络口碑</h2>
   <span class="badge {{T5_BADGE}}">{{T5_LEVEL}}</span>
   <p>{{T5_TEXT}}</p>
+  <p class="sources">{{T5_SOURCES}}</p>
 </section>
 
 <section class="block">
   <h2>六、抖音口碑</h2>
   <span class="badge {{T6_BADGE}}">{{T6_LEVEL}}</span>
   <p>{{T6_TEXT}}</p>
+  <p class="sources">{{T6_SOURCES}}</p>
 </section>
 
 <section class="block">
   <h2>七、高德口碑</h2>
   <span class="badge {{T7_BADGE}}">{{T7_LEVEL}}</span>
   <p>{{T7_TEXT}}</p>
+  <p class="sources">{{T7_SOURCES}}</p>
 </section>
 
 <section class="block">
