@@ -22,8 +22,8 @@
 
 ## 前置依赖
 
-- **[browser-skill](https://github.com/Tencent/BrowserSkill)**（腾讯开源浏览器自动化工具）：用于绕过招聘站登录墙自动爬取。未安装或无登录态时，技能会回退为 `WebFetch` 抓取 + 提示你粘贴页面文本，仍可工作。
-- 联网检索能力（WebSearch / WebFetch）。
+- **[browser-skill](https://github.com/Tencent/BrowserSkill)**（腾讯开源浏览器自动化工具）：**本技能强依赖。** 用于绕过招聘站登录墙自动爬取页面。技能启动时会先做一次 `bsk session start` 预检；**browser-skill 整体不可用（未安装 / 无登录态）时直接终止并提示安装后重跑**，不再回退其他方式（详见 `references/adr/0004-browser-skill-hard-dependency.md`）。
+- 联网检索能力（`WebSearch`）：仅用于发现 / 定位候选 URL，页面打开一律走 browser-skill。
 
 ## 使用
 
